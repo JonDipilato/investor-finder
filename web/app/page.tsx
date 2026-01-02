@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { Building2, Users, TrendingUp, Target, ArrowRight, Building, Zap, Leaf, Globe, CheckCircle2, Mail, MapPin, DollarSign, Sparkles, Clock, Shield, Star, Phone, Award } from "lucide-react";
 
-// Investor data with backstories for conversation starters
+// Investor data with verified backstories - Updated Jan 2, 2026
 const institutionalInvestors = [
   {
     name: "Rockpoint Group",
