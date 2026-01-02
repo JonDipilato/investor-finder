@@ -15,7 +15,7 @@ const institutionalInvestors = [
     fit: "Fresh capital actively deploying in 2025-2026",
     color: "from-blue-500 to-cyan-500",
     action: "info@rockpoint.com",
-    backstory: "Founded in 1995 by Bill Galvin & Alan Pontius. Known for value-add multifamily—buying underperforming properties, renovating, and holding. They've been through multiple real estate cycles and understand the Worcester market specifically.",
+    backstory: "Founded in 2003 by Bill Walton & Keith Gelb. Headquartered at 500 Boylston St in Boston, Rockpoint is a value-add multifamily specialist—they buy underperforming properties, renovate, and hold for the long term. With $15B+ AUM and 97,000+ multifamily units deployed, they've been through multiple real estate cycles and know the New England market.",
   },
   {
     name: "The Davis Companies",
@@ -26,7 +26,7 @@ const institutionalInvestors = [
     fit: "Similar business model • Proven multifamily expertise",
     color: "from-violet-500 to-purple-500",
     action: "thedaviscompanies.com",
-    backstory: "Jon Davis started the firm in 1988 with a single property in Boston. Now vertically integrated—they develop, acquire, and manage their own deals. Known for the Domain office complex in Seaport and extensive multifamily portfolio across Greater Boston.",
+    backstory: "Founded in 1976, Davis is a vertically integrated real estate platform with nearly 50 years of history. They develop, acquire, and manage their own deals—giving them operational control most pure capital providers don't have. Known for the Domain office complex in Seaport and extensive multifamily holdings across Greater Boston.",
   },
   {
     name: "Fifth Wall",
@@ -51,7 +51,7 @@ const individualInvestors = [
     fit: "Apply online to present • Direct access to individual wealth",
     color: "from-orange-500 to-amber-500",
     action: "launchpadventuregroup.com",
-    backstory: "Launched in 2000 by a group of successful tech entrepreneurs who wanted to give back. Unlike many angel groups, they don't pool capital—each member invests directly, so you build 175 individual relationships from one presentation. Their Catalyst networking events are where deals get done informally.",
+    backstory: "Active since 2001, LaunchPad has 175+ individual investor members who've deployed $125M+ into 150+ startups. Unlike pooled angel funds, each member invests directly—so one presentation can build 175 individual relationships. Led by Managing Director Ian Levine, their Catalyst networking events are where deals actually get done in New England.",
   },
   {
     name: "Golden Seeds",
@@ -62,7 +62,7 @@ const individualInvestors = [
     fit: "Active Boston chapter • Diverse investor base",
     color: "from-yellow-500 to-amber-500",
     action: "goldenseeds.com (Boston Chapter)",
-    backstory: "Founded in 2005 by Stephane Newby and a group of women investors in New York. Now one of the largest angel networks in the country with 280+ members. Their Boston chapter is particularly active in climate tech and real estate. They invest in women-led and diverse founding teams—your approach to sustainable development aligns well with their values.",
+    backstory: "Founded in 2005, Golden Seeds has grown to 280+ members nationwide with active chapters including Boston. They've deployed $175M+ into 235+ companies led by women and diverse founders. Their Boston chapter is active in climate tech and real estate—your sustainable development approach aligns with their investment thesis.",
   },
   {
     name: "Joe Caruso",
@@ -84,7 +84,7 @@ const wealthManagement = [
     highlight: "$9.2B AUM • Largest Bank-Owned Advisor in MA",
     contact: "Wealth Management Division",
     fit: "Gatekeeper to 100+ HNW family clients",
-    backstory: "Eastern Bank acquired Cambridge Trust in 2021, bringing 130 years of wealth management experience. They manage $9.2B for Massachusetts families—many in real estate. Their wealth advisors actively seek alternative investments for clients who want diversification beyond stocks and bonds.",
+    backstory: "Eastern Bank acquired Cambridge Trust in July 2024, creating Massachusetts's largest bank-owned investment advisor with $9.2B AUM. Their wealth management division serves families with substantial real estate holdings and actively seeks alternative investments for clients seeking diversification beyond stocks and bonds.",
   },
   {
     name: "Bessemer Trust",
@@ -538,14 +538,14 @@ export default function Home() {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a
-                href="mailto:brenden@yourfirm.com?subject=Investor Intelligence - Full Access Request"
+                href="mailto:dipilatoautomations@gmail.com?subject=Investor Intelligence - Full Access Request"
                 className="inline-flex items-center gap-2 px-8 py-4 bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-semibold rounded-xl transition-all hover:scale-105"
               >
                 <Mail className="w-5 h-5" />
                 Request Full Access
               </a>
               <a
-                href="tel:+1617xxx xxxx"
+                href="tel:+15083537143"
                 className="inline-flex items-center gap-2 px-8 py-4 glass hover:bg-white/10 text-white font-semibold rounded-xl transition-all hover:scale-105"
               >
                 <Phone className="w-5 h-5" />
