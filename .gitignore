@@ -1,0 +1,9 @@
+# Private investor research - keep as teaser value
+claudedocs/
+
+# Node
+node_modules/
+
+# IDEs
+.vscode/
+.idea/
