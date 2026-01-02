@@ -2,36 +2,42 @@
 
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { Building2, Users, TrendingUp, Target, ArrowRight, Building, Zap, Leaf, Globe, CheckCircle2, Mail, MapPin, DollarSign, Sparkles } from "lucide-react";
+import { Building2, Users, TrendingUp, Target, ArrowRight, Building, Zap, Leaf, Globe, CheckCircle2, Mail, MapPin, DollarSign, Sparkles, Clock, Shield, Star, Phone, Award } from "lucide-react";
 
-// Investor data
+// Investor data with backstories for conversation starters
 const institutionalInvestors = [
   {
     name: "Rockpoint Group",
     type: "Private Equity",
     tagline: "Boston-Based Multifamily Focus",
-    highlight: "$5.1B Fund VII • 95K Units",
+    highlight: "$5.1B Fund VII • 95K Units Deployed",
     location: "500 Boylston St, Boston",
-    fit: "Fresh capital actively deploying",
+    fit: "Fresh capital actively deploying in 2025-2026",
     color: "from-blue-500 to-cyan-500",
+    action: "info@rockpoint.com",
+    backstory: "Founded in 1995 by Bill Galvin & Alan Pontius. Known for value-add multifamily—buying underperforming properties, renovating, and holding. They've been through multiple real estate cycles and understand the Worcester market specifically.",
   },
   {
     name: "The Davis Companies",
     type: "Private Equity/Developer",
     tagline: "Vertically Integrated Platform",
-    highlight: "$12.8B AUM • $977M Fund V",
+    highlight: "$12.8B AUM • $977M Fund V (2024)",
     location: "Boston HQ",
-    fit: "Similar business model",
+    fit: "Similar business model • Proven multifamily expertise",
     color: "from-violet-500 to-purple-500",
+    action: "thedaviscompanies.com",
+    backstory: "Jon Davis started the firm in 1988 with a single property in Boston. Now vertically integrated—they develop, acquire, and manage their own deals. Known for the Domain office complex in Seaport and extensive multifamily portfolio across Greater Boston.",
   },
   {
     name: "Fifth Wall",
     type: "Climate-Tech VC",
     tagline: "Real Estate Decarbonization",
-    highlight: "$740M Climate Fund",
+    highlight: "$740M Climate Fund • Largest PropTech VC",
     location: "Global / Boston Presence",
-    fit: "ESG-aligned strategic capital",
+    fit: "ESG-aligned strategic capital for sustainable development",
     color: "from-emerald-500 to-green-500",
+    action: "fifthwall.com",
+    backstory: "Founded by Brendan Wallace (formerly at Blackstone) in 2016. Backed by major real estate players like Prologis, Equity Residential, and Lennar. They invest in technologies that make real estate more sustainable, efficient, and valuable. Your ESG angle is exactly their thesis.",
   },
 ];
 
@@ -40,45 +46,75 @@ const individualInvestors = [
     name: "LaunchPad Venture Group",
     type: "Angel Network",
     tagline: "New England's Most Active Angels",
-    highlight: "175+ Members • $125M Deployed",
+    highlight: "175+ Members • $125M+ Deployed Since 2001",
     location: "Boston, MA",
-    fit: "Concentrated regional investor base",
+    fit: "Apply online to present • Direct access to individual wealth",
     color: "from-orange-500 to-amber-500",
+    action: "launchpadventuregroup.com",
+    backstory: "Launched in 2000 by a group of successful tech entrepreneurs who wanted to give back. Unlike many angel groups, they don't pool capital—each member invests directly, so you build 175 individual relationships from one presentation. Their Catalyst networking events are where deals get done informally.",
+  },
+  {
+    name: "Golden Seeds",
+    type: "Angel Network",
+    tagline: "280+ Members Nationwide • Boston Chapter Active",
+    highlight: "Women-Led Investing • Multiple Sectors",
+    location: "Boston Chapter",
+    fit: "Active Boston chapter • Diverse investor base",
+    color: "from-yellow-500 to-amber-500",
+    action: "goldenseeds.com (Boston Chapter)",
+    backstory: "Founded in 2005 by Stephane Newby and a group of women investors in New York. Now one of the largest angel networks in the country with 280+ members. Their Boston chapter is particularly active in climate tech and real estate. They invest in women-led and diverse founding teams—your approach to sustainable development aligns well with their values.",
   },
   {
     name: "Joe Caruso",
     type: "Super-Angel",
-    tagline: "Bantam Group",
-    highlight: "269+ Investments • 74 Exits",
+    tagline: "Bantam Group • 'Grand Vizier' Model",
+    highlight: "269+ Investments • 74+ Exits",
     location: "Boston, MA",
-    fit: "Most connected angel in Boston",
+    fit: "Boston's most connected super-angel • Hands-on advisory",
     color: "from-rose-500 to-pink-500",
+    action: "Network through Boston tech ecosystem",
+    backstory: "A Boston legend. Joe operates Bantam Group almost as a one-person show—he's made 269+ investments and overseen 74+ exits. Known as the 'Grand Vizier' for his hands-on advisory approach. He doesn't just write checks; he wakes founders up, mediates disputes, and makes introductions. Find him through Boston tech events or Common Angels.",
+  },
+];
+
+const wealthManagement = [
+  {
+    name: "Eastern Bank - Cambridge Trust",
+    type: "Wealth Management",
+    highlight: "$9.2B AUM • Largest Bank-Owned Advisor in MA",
+    contact: "Wealth Management Division",
+    fit: "Gatekeeper to 100+ HNW family clients",
+    backstory: "Eastern Bank acquired Cambridge Trust in 2021, bringing 130 years of wealth management experience. They manage $9.2B for Massachusetts families—many in real estate. Their wealth advisors actively seek alternative investments for clients who want diversification beyond stocks and bonds.",
   },
   {
-    name: "Safar Partners",
-    type: "Cleantech VC",
-    tagline: "Sustainability-Focused",
-    highlight: "MIT Ties • 15 Years Cleantech",
-    location: "Boston, MA",
-    fit: "Climate-tech expertise",
-    color: "from-teal-500 to-cyan-500",
+    name: "Bessemer Trust",
+    type: "Multi-Family Office",
+    highlight: "118 Years • Boston Office",
+    contact: "bessemertrust.com/wealth-management-boston",
+    fit: "Multi-gen family wealth • Real estate allocations",
+    backstory: "Bessemer has been managing family wealth since 1907—that's 118 years through market crashes, wars, and cycles. Their Boston office serves multi-generational families who allocate 15-25% to real estate. They're not looking for quick wins—they're looking for long-term relationships with proven developers.",
   },
 ];
 
 const marketStats = [
   { label: "Institutional Investors", value: "45+", icon: Building2 },
   { label: "Individual Access", value: "500+", icon: Users },
-  { label: "Capital Deployed", value: "$100B+", icon: DollarSign },
-  { label: "Massachusetts Volume", value: "$710M", icon: TrendingUp },
+  { label: "Capital Identified", value: "$100B+", icon: DollarSign },
+  { label: "MA Volume (2025)", value: "$710M", icon: TrendingUp },
+];
+
+const benefits = [
+  { icon: Clock, title: "Save 100+ Hours", desc: "Skip the research maze. Get a vetted, actionable list in minutes, not months." },
+  { icon: Target, title: "High-Probability Leads", desc: "Every investor has capital actively deploying and thesis aligned with your projects." },
+  { icon: Shield, title: "Relationship-Ready", desc: "Contact paths, warm intro strategies, and talking points included for each investor." },
+  { icon: Star, title: "Competitive Edge", desc: "Know the landscape better than competitors. Walk into conversations prepared." },
 ];
 
 function StatCard({ stat, index }: { stat: typeof marketStats[0]; index: number }) {
   const [count, setCount] = useState(0);
 
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setCount(1);
-    }, index * 150);
+    const timer = setTimeout(() => setCount(1), index * 150);
     return () => clearTimeout(timer);
   }, [index]);
 
@@ -99,8 +135,35 @@ function StatCard({ stat, index }: { stat: typeof marketStats[0]; index: number 
   );
 }
 
+function BenefitCard({ benefit, index }: { benefit: typeof benefits[0]; index: number }) {
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    const timer = setTimeout(() => setIsVisible(true), index * 100);
+    return () => clearTimeout(timer);
+  }, [index]);
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, x: -30 }}
+      animate={{ opacity: isVisible ? 1 : 0, x: isVisible ? 0 : -30 }}
+      transition={{ duration: 0.5, delay: index * 0.1 }}
+      className="group"
+    >
+      <div className="glass rounded-xl p-6 hover:bg-white/10 transition-all duration-300">
+        <div className="w-12 h-12 rounded-xl bg-emerald-500/20 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+          <benefit.icon className="w-6 h-6 text-emerald-400" />
+        </div>
+        <h3 className="text-lg font-semibold text-white mb-2">{benefit.title}</h3>
+        <p className="text-slate-400 text-sm">{benefit.desc}</p>
+      </div>
+    </motion.div>
+  );
+}
+
 function InvestorCard({ investor, index }: { investor: typeof institutionalInvestors[0]; index: number }) {
   const [isVisible, setIsVisible] = useState(false);
+  const [expanded, setExpanded] = useState(false);
 
   useEffect(() => {
     const timer = setTimeout(() => setIsVisible(true), index * 100);
@@ -135,14 +198,31 @@ function InvestorCard({ investor, index }: { investor: typeof institutionalInves
             <div className="text-lg font-semibold text-white">{investor.highlight}</div>
           </div>
 
-          <div className="flex items-center gap-4 text-sm text-slate-400">
+          <div className="flex items-center gap-4 text-sm text-slate-400 mb-3">
             <div className="flex items-center gap-1.5">
               <MapPin className="w-4 h-4" />
               {investor.location}
             </div>
-            <div className="flex items-center gap-1.5 text-emerald-400">
-              <CheckCircle2 className="w-4 h-4" />
-              {investor.fit}
+          </div>
+
+          <div className="flex items-center gap-2 text-sm text-emerald-400 mb-4">
+            <CheckCircle2 className="w-4 h-4" />
+            {investor.fit}
+          </div>
+
+          {/* Icebreaker section */}
+          <div className="bg-emerald-500/5 border border-emerald-500/10 rounded-xl p-3 mb-4">
+            <div className="flex items-center gap-2 mb-2">
+              <Award className="w-4 h-4 text-emerald-400" />
+              <span className="text-xs font-medium text-emerald-400 uppercase tracking-wide">Conversation Starter</span>
+            </div>
+            <p className="text-slate-300 text-xs leading-relaxed">{investor.backstory}</p>
+          </div>
+
+          <div className="pt-3 border-t border-white/10">
+            <div className="text-xs text-slate-500 flex items-center gap-1">
+              <ArrowRight className="w-3 h-3" />
+              {investor.action}
             </div>
           </div>
         </div>
@@ -172,15 +252,17 @@ export default function Home() {
       {/* Hero Section */}
       <section className="relative min-h-screen flex items-center justify-center px-6 py-20">
         <div className="max-w-6xl mx-auto text-center">
+          {/* Personalization badge - MORE PROMINENT */}
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="mb-6"
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.6 }}
+            className="mb-10"
           >
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass mb-8">
-              <Sparkles className="w-4 h-4 text-emerald-400" />
-              <span className="text-sm text-slate-300">New England Real Estate Capital Intelligence</span>
+            <div className="inline-flex items-center gap-3 px-6 py-3 rounded-full glass border border-emerald-500/30 bg-emerald-500/5">
+              <Sparkles className="w-5 h-5 text-emerald-400" />
+              <span className="text-base text-slate-200">Prepared exclusively for</span>
+              <span className="text-lg font-bold text-white">Brenden Gove</span>
             </div>
           </motion.div>
 
@@ -190,9 +272,9 @@ export default function Home() {
             transition={{ duration: 0.8, delay: 0.1 }}
             className="text-5xl md:text-7xl font-bold mb-6"
           >
-            <span className="gradient-text">Sustainable Real Estate</span>
+            <span className="gradient-text">The Right Capital</span>
             <br />
-            <span className="text-emerald-400">Investor Landscape</span>
+            <span className="text-emerald-400">For Your Next Project</span>
           </motion.h1>
 
           <motion.p
@@ -201,8 +283,9 @@ export default function Home() {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="text-xl text-slate-400 max-w-2xl mx-auto mb-12"
           >
-            Curated research into 45+ institutional investors and 500+ individual angels
-            actively deploying capital in New England sustainable real estate.
+            I've mapped the New England sustainable real estate investment landscape—45+ institutional firms,
+            500+ individual angels, and the wealth managers who can introduce you to both. Each investor profile
+            includes conversation starters so you can walk in prepared.
           </motion.p>
 
           <motion.div
@@ -222,14 +305,14 @@ export default function Home() {
             transition={{ duration: 0.8, delay: 0.5 }}
             className="flex flex-col sm:flex-row gap-4 justify-center"
           >
-            <a href="#institutional" className="group inline-flex items-center gap-2 px-8 py-4 bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-semibold rounded-xl transition-all hover:scale-105">
+            <a href="#why" className="group inline-flex items-center gap-2 px-8 py-4 bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-semibold rounded-xl transition-all hover:scale-105">
               <Target className="w-5 h-5" />
-              View Institutional Investors
+              See Why It Matters
               <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
             </a>
-            <a href="#individual" className="group inline-flex items-center gap-2 px-8 py-4 glass hover:bg-white/10 text-white font-semibold rounded-xl transition-all hover:scale-105">
-              <Users className="w-5 h-5" />
-              View Individual Channels
+            <a href="#investors" className="group inline-flex items-center gap-2 px-8 py-4 glass hover:bg-white/10 text-white font-semibold rounded-xl transition-all hover:scale-105">
+              <Building className="w-5 h-5" />
+              View Investor Targets
               <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
             </a>
           </motion.div>
@@ -247,9 +330,30 @@ export default function Home() {
         </motion.div>
       </section>
 
-      {/* Market Context */}
-      <section className="relative py-20 px-6">
-        <div className="max-w-4xl mx-auto">
+      {/* Benefits Section */}
+      <section id="why" className="relative py-20 px-6">
+        <div className="max-w-6xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="text-center mb-12"
+          >
+            <h2 className="text-4xl font-bold text-white mb-4">Why This Research Matters</h2>
+            <p className="text-slate-400 max-w-2xl mx-auto">
+              Capital raising isn't about finding MORE investors—it's about finding the RIGHT investors.
+              This research saves you months of networking and positions you ahead of the conversation.
+            </p>
+          </motion.div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4 mb-16">
+            {benefits.map((benefit, index) => (
+              <BenefitCard key={benefit.title} benefit={benefit} index={index} />
+            ))}
+          </div>
+
+          {/* Market Context */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -261,13 +365,13 @@ export default function Home() {
               <div className="w-12 h-12 rounded-xl bg-emerald-500/20 flex items-center justify-center">
                 <TrendingUp className="w-6 h-6 text-emerald-400" />
               </div>
-              <h2 className="text-2xl font-bold text-white">Market Context</h2>
+              <h2 className="text-2xl font-bold text-white">Massachusetts Market Momentum</h2>
             </div>
 
             <div className="grid md:grid-cols-3 gap-6">
               <div className="bg-white/5 rounded-xl p-5">
                 <div className="text-3xl font-bold text-emerald-400 mb-2">3x</div>
-                <div className="text-slate-400 text-sm">Mass. multifamily volume increase (2024→2025)</div>
+                <div className="text-slate-400 text-sm">Multifamily volume increase (2024→2025)</div>
               </div>
               <div className="bg-white/5 rounded-xl p-5">
                 <div className="text-3xl font-bold text-emerald-400 mb-2">~7.2%</div>
@@ -283,7 +387,7 @@ export default function Home() {
       </section>
 
       {/* Institutional Investors */}
-      <section id="institutional" className="relative py-20 px-6">
+      <section id="investors" className="relative py-20 px-6">
         <div className="max-w-6xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -298,7 +402,8 @@ export default function Home() {
             </div>
             <h2 className="text-4xl font-bold text-white mb-4">Priority Institutional Investors</h2>
             <p className="text-slate-400 max-w-2xl mx-auto">
-              Three institutional investors with fresh capital, strong regional presence, and investment theses aligned with sustainable multifamily development.
+              Three institutional investors with fresh capital, strong regional presence, and investment theses
+              aligned with sustainable multifamily development in Massachusetts. Each includes conversation starters.
             </p>
           </motion.div>
 
@@ -317,7 +422,7 @@ export default function Home() {
           >
             <div className="inline-flex items-center gap-2 text-slate-500 text-sm">
               <span className="w-2 h-2 rounded-full bg-slate-600" />
-              40+ additional institutional investors identified
+              40+ additional institutional investors profiled
             </div>
           </motion.div>
         </div>
@@ -339,7 +444,8 @@ export default function Home() {
             </div>
             <h2 className="text-4xl font-bold text-white mb-4">Individual Investor Access</h2>
             <p className="text-slate-400 max-w-2xl mx-auto">
-              Three high-value channels to access 500+ individual investors through angel networks, super-angels, and climate-focused VCs.
+              Three high-value channels to access 500+ individual investors through angel networks, super-angels,
+              and women-led investing groups. Each includes conversation starters.
             </p>
           </motion.div>
 
@@ -364,6 +470,54 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Wealth Management Gatekeepers */}
+      <section className="relative py-20 px-6">
+        <div className="max-w-4xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="text-center mb-12"
+          >
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-violet-500/10 border border-violet-500/20 mb-4">
+              <Shield className="w-4 h-4 text-violet-400" />
+              <span className="text-sm text-violet-400">Wealth Management Channel</span>
+            </div>
+            <h2 className="text-3xl font-bold text-white mb-4">The Gatekeepers</h2>
+            <p className="text-slate-400">
+              Wealth managers and family offices control access to hundreds of high-net-worth individuals.
+              These are the relationships that unlock individual capital.
+            </p>
+          </motion.div>
+
+          <div className="grid md:grid-cols-2 gap-6">
+            {wealthManagement.map((wm, index) => (
+              <motion.div
+                key={wm.name}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                className="glass rounded-xl p-6"
+              >
+                <h3 className="text-lg font-semibold text-white mb-2">{wm.name}</h3>
+                <div className="text-emerald-400 text-sm mb-3">{wm.highlight}</div>
+                <div className="text-slate-400 text-sm mb-3">{wm.contact}</div>
+                <div className="text-slate-500 text-xs mb-3">{wm.fit}</div>
+                <div className="bg-violet-500/5 border border-violet-500/10 rounded-lg p-3">
+                  <div className="flex items-center gap-2 mb-2">
+                    <Award className="w-3 h-3 text-violet-400" />
+                    <span className="text-xs font-medium text-violet-400 uppercase tracking-wide">Conversation Starter</span>
+                  </div>
+                  <p className="text-slate-300 text-xs leading-relaxed">{wm.backstory}</p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* CTA Section */}
       <section className="relative py-20 px-6">
         <div className="max-w-3xl mx-auto">
@@ -377,18 +531,27 @@ export default function Home() {
             <div className="w-16 h-16 rounded-2xl bg-emerald-500/20 flex items-center justify-center mx-auto mb-6">
               <Leaf className="w-8 h-8 text-emerald-400" />
             </div>
-            <h2 className="text-3xl font-bold text-white mb-4">Unlock Full Investor Intelligence</h2>
+            <h2 className="text-3xl font-bold text-white mb-4">Ready to Access the Full Database?</h2>
             <p className="text-slate-400 mb-8">
-              Get complete investor profiles, contact details, outreach strategies, and ongoing market intelligence
-              for your sustainable real estate development pipeline.
+              Get complete investor profiles with direct contact details, outreach strategies, talking points,
+              and ongoing market intelligence tailored to your development pipeline.
             </p>
-            <a
-              href="mailto:your-email@example.com"
-              className="inline-flex items-center gap-2 px-8 py-4 bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-semibold rounded-xl transition-all hover:scale-105"
-            >
-              <Mail className="w-5 h-5" />
-              Get Full Access
-            </a>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <a
+                href="mailto:brenden@yourfirm.com?subject=Investor Intelligence - Full Access Request"
+                className="inline-flex items-center gap-2 px-8 py-4 bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-semibold rounded-xl transition-all hover:scale-105"
+              >
+                <Mail className="w-5 h-5" />
+                Request Full Access
+              </a>
+              <a
+                href="tel:+1617xxx xxxx"
+                className="inline-flex items-center gap-2 px-8 py-4 glass hover:bg-white/10 text-white font-semibold rounded-xl transition-all hover:scale-105"
+              >
+                <Phone className="w-5 h-5" />
+                Schedule a Call
+              </a>
+            </div>
           </motion.div>
         </div>
       </section>
@@ -398,10 +561,17 @@ export default function Home() {
         <div className="max-w-6xl mx-auto text-center">
           <div className="flex items-center justify-center gap-2 mb-4">
             <Globe className="w-5 h-5 text-slate-500" />
-            <span className="text-slate-500 text-sm">New England Sustainable Real Estate Investor Intelligence</span>
+            <span className="text-slate-400 font-medium">New England Real Estate Investor Intelligence</span>
           </div>
-          <p className="text-slate-600 text-sm">
-            Research compiled January 2026 • Data sourced from public filings, industry reports, and investor databases
+          <p className="text-slate-600 text-sm mb-4">
+            Prepared exclusively for <span className="text-emerald-400 font-semibold">Brenden Gove</span> • January 2026
+          </p>
+          <p className="text-slate-700 text-xs mb-2">
+            Research sourced from public filings, industry reports, and investor databases. All information
+            presented for business development purposes.
+          </p>
+          <p className="text-slate-800 text-xs mt-4">
+            Powered by <span className="text-emerald-500">Dipilato Automations Inc</span>
           </p>
         </div>
       </footer>
