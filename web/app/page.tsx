@@ -2,42 +2,48 @@
 
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { Building2, Users, TrendingUp, Target, ArrowRight, Building, Zap, Leaf, Globe, CheckCircle2, Mail, MapPin, DollarSign, Sparkles, Clock, Shield, Star, Phone, Award } from "lucide-react";
+import { Building2, Users, TrendingUp, Target, ArrowRight, Building, Leaf, Globe, CheckCircle2, Mail, MapPin, DollarSign, Sparkles, Clock, Shield, Star, Phone, Award } from "lucide-react";
 
-// Investor data with verified backstories - Updated Jan 2, 2026 v2
+// Investor data - Updated Jan 2, 2026 v2
 const institutionalInvestors = [
   {
     name: "Rockpoint Group",
     type: "Private Equity",
-    tagline: "Boston-Based Multifamily Focus",
-    highlight: "$5.1B Fund VII • 95K Units Deployed",
+    tagline: "Boston-Based Real Estate PE",
+    highlight: "$2.7B Fund VII • $5.1B Total Commitments",
+    highlightSources: [1],
     location: "500 Boylston St, Boston",
-    fit: "Fresh capital actively deploying in 2025-2026",
+    fit: "Latest fundraising cycle closed Jan 2024",
     color: "from-blue-500 to-cyan-500",
     action: "info@rockpoint.com",
-    backstory: "Founded in 2003 by Bill Walton & Keith Gelb. Headquartered at 500 Boylston St in Boston, Rockpoint is a value-add multifamily specialist—they buy underperforming properties, renovate, and hold for the long term. With $15B+ AUM and 97,000+ multifamily units deployed, they've been through multiple real estate cycles and know the New England market.",
+    backstory: "Founded in 2003 by Bill Walton and Keith Gelb. Headquartered at 500 Boylston Street in Boston. Fund VII closed at $2.7B within a $5.1B fundraising cycle announced in January 2024. Net AUM is $13B as of Sept 30, 2025. Fund VII targets multifamily, industrial, single-family rental, hospitality, and select office investments in the U.S.",
+    backstorySources: [1],
   },
   {
     name: "The Davis Companies",
     type: "Private Equity/Developer",
     tagline: "Vertically Integrated Platform",
-    highlight: "$12.8B AUM • $977M Fund V (2024)",
+    highlight: "$12.8B Gross Asset Value • $977.1M Fund V (2022)",
+    highlightSources: [2],
     location: "Boston HQ",
-    fit: "Similar business model • Proven multifamily expertise",
+    fit: "Vertically integrated platform • Diverse asset mix",
     color: "from-violet-500 to-purple-500",
     action: "thedaviscompanies.com",
-    backstory: "Founded in 1976, Davis is a vertically integrated real estate platform with nearly 50 years of history. They develop, acquire, and manage their own deals—giving them operational control most pure capital providers don't have. Known for the Domain office complex in Seaport and extensive multifamily holdings across Greater Boston.",
+    backstory: "Founded in 1976, Davis is a vertically integrated real estate investment, development, and management firm. It reports $12.8B in gross asset value and a portfolio of approximately 15.2M SF plus 5,800+ residential units. Davis Investment Ventures Fund V closed at $977.1M in 2022. Assets include 88 Black Falcon Pier in Boston's Seaport.",
+    backstorySources: [2, 3],
   },
   {
     name: "Fifth Wall",
     type: "Climate-Tech VC",
     tagline: "Real Estate Decarbonization",
-    highlight: "$740M Climate Fund • Largest PropTech VC",
-    location: "Global / Boston Presence",
-    fit: "ESG-aligned strategic capital for sustainable development",
+    highlight: "$500M Climate Tech Fund • Real Estate Tech VC",
+    highlightSources: [4],
+    location: "Los Angeles, CA",
+    fit: "Climate Tech Fund focused on real estate decarbonization",
     color: "from-emerald-500 to-green-500",
     action: "fifthwall.com",
-    backstory: "Founded by Brendan Wallace (formerly at Blackstone) in 2016. Backed by major real estate players like Prologis, Equity Residential, and Lennar. They invest in technologies that make real estate more sustainable, efficient, and valuable. Your ESG angle is exactly their thesis.",
+    backstory: "Founded in 2016 by Brendan F. Wallace and Brad Greiwe. Wallace previously worked in Blackstone's real estate group. Fifth Wall manages the largest fund specialized in real estate technology and closed a $500M Climate Tech Fund to decarbonize real estate. LPs include major real estate owners such as Equity Residential and Prologis.",
+    backstorySources: [4],
   },
 ];
 
@@ -47,33 +53,26 @@ const individualInvestors = [
     type: "Angel Network",
     tagline: "New England's Most Active Angels",
     highlight: "175+ Members • $125M+ Deployed Since 2001",
+    highlightSources: [5],
     location: "Boston, MA",
     fit: "Apply online to present • Direct access to individual wealth",
     color: "from-orange-500 to-amber-500",
     action: "launchpadventuregroup.com",
-    backstory: "Active since 2001, LaunchPad has 175+ individual investor members who've deployed $125M+ into 150+ startups. Unlike pooled angel funds, each member invests directly—so one presentation can build 175 individual relationships. Led by Managing Director Ian Levine, their Catalyst networking events are where deals actually get done in New England.",
+    backstory: "Active since 2001, LaunchPad has 175+ individual investor members who've deployed $125M+ into 150+ startups. Unlike pooled angel funds, each member invests directly, so one presentation can build many individual relationships. Their Catalyst networking events are a key entry point for founders.",
+    backstorySources: [5],
   },
   {
     name: "Golden Seeds",
     type: "Angel Network",
-    tagline: "280+ Members Nationwide • Boston Chapter Active",
+    tagline: "Nearly 290 Members Nationwide • Women-Led Investing",
     highlight: "Women-Led Investing • Multiple Sectors",
-    location: "Boston Chapter",
-    fit: "Active Boston chapter • Diverse investor base",
+    highlightSources: [6],
+    location: "Nationwide",
+    fit: "Large national network • Women-led focus",
     color: "from-yellow-500 to-amber-500",
-    action: "goldenseeds.com (Boston Chapter)",
-    backstory: "Founded in 2005, Golden Seeds has grown to 280+ members nationwide with active chapters including Boston. They've deployed $175M+ into 235+ companies led by women and diverse founders. Their Boston chapter is active in climate tech and real estate—your sustainable development approach aligns with their investment thesis.",
-  },
-  {
-    name: "Joe Caruso",
-    type: "Super-Angel",
-    tagline: "Bantam Group • 'Grand Vizier' Model",
-    highlight: "269+ Investments • 74+ Exits",
-    location: "Boston, MA",
-    fit: "Boston's most connected super-angel • Hands-on advisory",
-    color: "from-rose-500 to-pink-500",
-    action: "Network through Boston tech ecosystem",
-    backstory: "A Boston legend. Joe operates Bantam Group almost as a one-person show—he's made 269+ investments and overseen 74+ exits. Known as the 'Grand Vizier' for his hands-on advisory approach. He doesn't just write checks; he wakes founders up, mediates disputes, and makes introductions. Find him through Boston tech events or Common Angels.",
+    action: "goldenseeds.com",
+    backstory: "Founded in 2004, Golden Seeds has grown to nearly 290 members nationwide. The network has invested over $190M in 260+ companies and is one of the largest and most active angel groups in the U.S.",
+    backstorySources: [6],
   },
 ];
 
@@ -81,34 +80,132 @@ const wealthManagement = [
   {
     name: "Eastern Bank - Cambridge Trust",
     type: "Wealth Management",
-    highlight: "$9.2B AUM • Largest Bank-Owned Advisor in MA",
+    highlight: "$8.4B AUM • Largest Bank-Owned Advisor in MA",
+    sources: [7],
     contact: "Wealth Management Division",
-    fit: "Gatekeeper to 100+ HNW family clients",
-    backstory: "Eastern Bank acquired Cambridge Trust in July 2024, creating Massachusetts's largest bank-owned investment advisor with $9.2B AUM. Their wealth management division serves families with substantial real estate holdings and actively seeks alternative investments for clients seeking diversification beyond stocks and bonds.",
+    fit: "Gatekeeper to high-net-worth family clients",
+    backstory: "The 2024 combination of Eastern Bank and Cambridge Trust created Massachusetts's largest bank-owned investment advisor with approximately $8.4B AUM. Their wealth management division serves families with substantial real estate holdings and seeks alternative investments for diversification beyond stocks and bonds.",
   },
   {
     name: "Bessemer Trust",
     type: "Multi-Family Office",
     highlight: "118 Years • Boston Office",
+    sources: [8],
     contact: "bessemertrust.com/wealth-management-boston",
-    fit: "Multi-gen family wealth • Real estate allocations",
-    backstory: "Bessemer has been managing family wealth since 1907—that's 118 years through market crashes, wars, and cycles. Their Boston office serves multi-generational families who allocate 15-25% to real estate. They're not looking for quick wins—they're looking for long-term relationships with proven developers.",
+    fit: "Multi-gen family wealth • Private wealth management",
+    backstory: "Bessemer has been managing family wealth since 1907—that's 118 years through market cycles. Their Boston office serves multi-generational families and focuses on long-term relationships with proven developers.",
   },
 ];
 
 const marketStats = [
-  { label: "Institutional Investors", value: "45+", icon: Building2 },
-  { label: "Individual Access", value: "500+", icon: Users },
-  { label: "Capital Identified", value: "$100B+", icon: DollarSign },
-  { label: "MA Volume (2025)", value: "$710M", icon: TrendingUp },
+  { label: "LaunchPad Members", value: "175+", icon: Users, sources: [5] },
+  { label: "Golden Seeds Members", value: "~290", icon: Users, sources: [6] },
+  { label: "Worcester Volume (2025 YTD)", value: "$710M", icon: TrendingUp, sources: [9] },
+  { label: "Worcester Avg. Price/Unit", value: "~$222K", icon: DollarSign, sources: [9] },
 ];
 
 const benefits = [
-  { icon: Clock, title: "Save 100+ Hours", desc: "Skip the research maze. Get a vetted, actionable list in minutes, not months." },
-  { icon: Target, title: "High-Probability Leads", desc: "Every investor has capital actively deploying and thesis aligned with your projects." },
+  { icon: Clock, title: "Save Time", desc: "Skip the research maze. Get a vetted, actionable list faster than starting from scratch." },
+  { icon: Target, title: "High-Probability Leads", desc: "Investors selected for recent fund activity and aligned investment theses." },
   { icon: Shield, title: "Relationship-Ready", desc: "Contact paths, warm intro strategies, and talking points included for each investor." },
   { icon: Star, title: "Competitive Edge", desc: "Know the landscape better than competitors. Walk into conversations prepared." },
 ];
+
+const footnotes = [
+  {
+    id: 1,
+    label: "Rockpoint fundraising, AUM, and HQ",
+    links: [
+      { label: "Rockpoint Raises $5.1B (Jan 17, 2024)", url: "https://rockpoint.com/2024/01/17/rockpoint-raises-5-1-billion-in-latest-fundraising-cycle/" },
+      { label: "Rockpoint Firm Overview", url: "https://rockpoint.com/firm-overview/" },
+      { label: "Rockpoint Contact", url: "https://rockpoint.com/contact/" },
+    ],
+  },
+  {
+    id: 2,
+    label: "Davis fund size/year and gross asset value",
+    links: [
+      { label: "Davis Company Overview", url: "https://www.thedaviscompanies.com/company" },
+      { label: "Davis Asset Management Job Description (Nov 2025)", url: "https://www.thedaviscompanies.com/wp-content/uploads/2025/11/Job-Description-Senior-Associate-AM-11.18.2025.pdf" },
+    ],
+  },
+  {
+    id: 3,
+    label: "Davis Seaport asset reference",
+    links: [
+      { label: "Davis Cappy Daume Recognition (Jan 2021)", url: "https://www.thedaviscompanies.com/boston-real-estate-times-announces-its-10-outstanding-women-of-2021-cappy-daume/" },
+    ],
+  },
+  {
+    id: 4,
+    label: "Fifth Wall founding and climate fund",
+    links: [
+      { label: "Fifth Wall (firm) - Wikipedia", url: "https://en.wikipedia.org/wiki/Fifth_Wall_(firm)" },
+      { label: "Fifth Wall About", url: "https://www.fifthwall.com/about" },
+    ],
+  },
+  {
+    id: 5,
+    label: "LaunchPad Venture Group member and investment stats",
+    links: [
+      { label: "LaunchPad Who We Are", url: "https://www.launchpadventuregroup.com/who-we-are" },
+    ],
+  },
+  {
+    id: 6,
+    label: "Golden Seeds membership and investment stats",
+    links: [
+      { label: "Golden Seeds Homepage", url: "https://goldenseeds.com/" },
+      { label: "Golden Seeds Membership", url: "https://goldenseeds.com/angel-network" },
+    ],
+  },
+  {
+    id: 7,
+    label: "Eastern Bank / Cambridge Trust combination and AUM",
+    links: [
+      { label: "Cambridge Trust About", url: "https://www.cambridgetrust.com/about-us" },
+    ],
+  },
+  {
+    id: 8,
+    label: "Bessemer Trust founding year and Boston office",
+    links: [
+      { label: "Bessemer Trust Boston", url: "https://www.bessemertrust.com/wealth-management-boston" },
+    ],
+  },
+  {
+    id: 9,
+    label: "Worcester County multifamily volume, pricing, and cap rates",
+    links: [
+      { label: "NPCG Worcester County Market Report (Dec 16, 2025)", url: "https://northeastpcg.com/worcester-county-ma-market-report/" },
+    ],
+  },
+];
+
+function FootnoteRef({ id }: { id: number }) {
+  return (
+    <sup className="ml-1 align-super text-[10px] text-emerald-400/80">
+      <a
+        href={`#footnote-${id}`}
+        className="hover:text-emerald-300 transition-colors"
+        aria-label={`Footnote ${id}`}
+      >
+        [{id}]
+      </a>
+    </sup>
+  );
+}
+
+function FootnoteRefs({ ids }: { ids?: number[] }) {
+  if (!ids || ids.length === 0) return null;
+  return (
+    <span className="ml-1">
+      {ids.map((id) => (
+        <FootnoteRef key={id} id={id} />
+      ))}
+    </span>
+  );
+}
 
 function StatCard({ stat, index }: { stat: typeof marketStats[0]; index: number }) {
   const [count, setCount] = useState(0);
@@ -128,7 +225,10 @@ function StatCard({ stat, index }: { stat: typeof marketStats[0]; index: number 
       <div className="glass-dark rounded-2xl p-6 glow hover:scale-105 transition-transform duration-300">
         <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent rounded-2xl" />
         <stat.icon className="w-8 h-8 text-emerald-400 mb-3" />
-        <div className="text-4xl font-bold text-white mb-1">{stat.value}</div>
+        <div className="text-4xl font-bold text-white mb-1">
+          {stat.value}
+          <FootnoteRefs ids={stat.sources} />
+        </div>
         <div className="text-slate-400 text-sm">{stat.label}</div>
       </div>
     </motion.div>
@@ -195,7 +295,10 @@ function InvestorCard({ investor, index }: { investor: typeof institutionalInves
           </div>
 
           <div className="bg-white/5 rounded-xl p-3 mb-4">
-            <div className="text-lg font-semibold text-white">{investor.highlight}</div>
+            <div className="text-lg font-semibold text-white">
+              {investor.highlight}
+              <FootnoteRefs ids={investor.highlightSources} />
+            </div>
           </div>
 
           <div className="flex items-center gap-4 text-sm text-slate-400 mb-3">
@@ -216,7 +319,10 @@ function InvestorCard({ investor, index }: { investor: typeof institutionalInves
               <Award className="w-4 h-4 text-emerald-400" />
               <span className="text-xs font-medium text-emerald-400 uppercase tracking-wide">Conversation Starter</span>
             </div>
-            <p className="text-slate-300 text-xs leading-relaxed">{investor.backstory}</p>
+            <p className="text-slate-300 text-xs leading-relaxed">
+              {investor.backstory}
+              <FootnoteRefs ids={investor.backstorySources} />
+            </p>
           </div>
 
           <div className="pt-3 border-t border-white/10">
@@ -281,11 +387,11 @@ export default function Home() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="text-xl text-slate-400 max-w-2xl mx-auto mb-12"
-          >
-            I've mapped the New England sustainable real estate investment landscape—45+ institutional firms,
-            500+ individual angels, and the wealth managers who can introduce you to both. Each investor profile
-            includes conversation starters so you can walk in prepared.
+          className="text-xl text-slate-400 max-w-2xl mx-auto mb-12"
+        >
+            I've mapped the New England sustainable real estate investment landscape across institutional firms,
+            angel networks, and wealth managers. Each investor profile includes conversation starters so you can
+            walk in prepared.
           </motion.p>
 
           <motion.div
@@ -343,7 +449,7 @@ export default function Home() {
             <h2 className="text-4xl font-bold text-white mb-4">Why This Research Matters</h2>
             <p className="text-slate-400 max-w-2xl mx-auto">
               Capital raising isn't about finding MORE investors—it's about finding the RIGHT investors.
-              This research saves you months of networking and positions you ahead of the conversation.
+              This research saves you significant networking time and positions you ahead of the conversation.
             </p>
           </motion.div>
 
@@ -365,21 +471,30 @@ export default function Home() {
               <div className="w-12 h-12 rounded-xl bg-emerald-500/20 flex items-center justify-center">
                 <TrendingUp className="w-6 h-6 text-emerald-400" />
               </div>
-              <h2 className="text-2xl font-bold text-white">Massachusetts Market Momentum</h2>
+              <h2 className="text-2xl font-bold text-white">Worcester County Market Momentum</h2>
             </div>
 
             <div className="grid md:grid-cols-3 gap-6">
               <div className="bg-white/5 rounded-xl p-5">
-                <div className="text-3xl font-bold text-emerald-400 mb-2">3x</div>
-                <div className="text-slate-400 text-sm">Multifamily volume increase (2024→2025)</div>
+                <div className="text-3xl font-bold text-emerald-400 mb-2">
+                  3x
+                  <FootnoteRef id={9} />
+                </div>
+                <div className="text-slate-400 text-sm">Worcester County volume increase (2024→2025 YTD)</div>
               </div>
               <div className="bg-white/5 rounded-xl p-5">
-                <div className="text-3xl font-bold text-emerald-400 mb-2">~7.2%</div>
-                <div className="text-slate-400 text-sm">Worcester County cap rates</div>
+                <div className="text-3xl font-bold text-emerald-400 mb-2">
+                  ~7.2%
+                  <FootnoteRef id={9} />
+                </div>
+                <div className="text-slate-400 text-sm">Worcester County multifamily cap rates</div>
               </div>
               <div className="bg-white/5 rounded-xl p-5">
-                <div className="text-3xl font-bold text-emerald-400 mb-2">~$222K</div>
-                <div className="text-slate-400 text-sm">Per-unit multifamily pricing</div>
+                <div className="text-3xl font-bold text-emerald-400 mb-2">
+                  ~$222K
+                  <FootnoteRef id={9} />
+                </div>
+                <div className="text-slate-400 text-sm">Worcester County per-unit pricing</div>
               </div>
             </div>
           </motion.div>
@@ -402,7 +517,7 @@ export default function Home() {
             </div>
             <h2 className="text-4xl font-bold text-white mb-4">Priority Institutional Investors</h2>
             <p className="text-slate-400 max-w-2xl mx-auto">
-              Three institutional investors with fresh capital, strong regional presence, and investment theses
+              Three institutional investors with recent fund activity, strong regional presence, and investment theses
               aligned with sustainable multifamily development in Massachusetts. Each includes conversation starters.
             </p>
           </motion.div>
@@ -422,7 +537,7 @@ export default function Home() {
           >
             <div className="inline-flex items-center gap-2 text-slate-500 text-sm">
               <span className="w-2 h-2 rounded-full bg-slate-600" />
-              40+ additional institutional investors profiled
+              Additional institutional investors profiled in the full research
             </div>
           </motion.div>
         </div>
@@ -444,12 +559,12 @@ export default function Home() {
             </div>
             <h2 className="text-4xl font-bold text-white mb-4">Individual Investor Access</h2>
             <p className="text-slate-400 max-w-2xl mx-auto">
-              Three high-value channels to access 500+ individual investors through angel networks, super-angels,
-              and women-led investing groups. Each includes conversation starters.
+              Two high-value channels to access individual investors through angel networks and women-led
+              investing groups. Each includes conversation starters.
             </p>
           </motion.div>
 
-          <div className="grid md:grid-cols-3 gap-6">
+          <div className="grid md:grid-cols-2 gap-6">
             {individualInvestors.map((investor, index) => (
               <InvestorCard key={investor.name} investor={investor} index={index} />
             ))}
@@ -502,7 +617,10 @@ export default function Home() {
                 className="glass rounded-xl p-6"
               >
                 <h3 className="text-lg font-semibold text-white mb-2">{wm.name}</h3>
-                <div className="text-emerald-400 text-sm mb-3">{wm.highlight}</div>
+                <div className="text-emerald-400 text-sm mb-3">
+                  {wm.highlight}
+                  <FootnoteRefs ids={wm.sources} />
+                </div>
                 <div className="text-slate-400 text-sm mb-3">{wm.contact}</div>
                 <div className="text-slate-500 text-xs mb-3">{wm.fit}</div>
                 <div className="bg-violet-500/5 border border-violet-500/10 rounded-lg p-3">
@@ -553,6 +671,44 @@ export default function Home() {
               </a>
             </div>
           </motion.div>
+        </div>
+      </section>
+
+      {/* Sources */}
+      <section id="sources" className="relative py-12 px-6">
+        <div className="max-w-4xl mx-auto">
+          <div className="glass rounded-3xl p-6 md:p-8 border border-white/10">
+            <div className="flex items-center gap-3 mb-6">
+              <div className="w-10 h-10 rounded-xl bg-emerald-500/20 flex items-center justify-center">
+                <Shield className="w-5 h-5 text-emerald-400" />
+              </div>
+              <div>
+                <h2 className="text-xl font-bold text-white">Sources</h2>
+                <p className="text-slate-400 text-xs">Footnotes for the claims on this page.</p>
+              </div>
+            </div>
+            <ol className="space-y-4 text-xs text-slate-400">
+              {footnotes.map((note) => (
+                <li key={note.id} id={`footnote-${note.id}`} className="leading-relaxed">
+                  <span className="text-emerald-400 font-semibold">[{note.id}]</span>{" "}
+                  <span className="text-slate-300">{note.label}:</span>
+                  <div className="mt-2 flex flex-col gap-1">
+                    {note.links.map((link) => (
+                      <a
+                        key={link.url}
+                        href={link.url}
+                        className="text-slate-400 hover:text-emerald-300 transition-colors break-all"
+                        target="_blank"
+                        rel="noreferrer"
+                      >
+                        {link.label}
+                      </a>
+                    ))}
+                  </div>
+                </li>
+              ))}
+            </ol>
+          </div>
         </div>
       </section>
 
