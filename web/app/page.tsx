@@ -531,7 +531,7 @@ export default function Home() {
             <div className="w-16 h-16 rounded-2xl bg-emerald-500/20 flex items-center justify-center mx-auto mb-6">
               <Leaf className="w-8 h-8 text-emerald-400" />
             </div>
-            <h2 className="text-3xl font-bold text-white mb-4">Ready to Access the Full Database?</h2>
+            <h2 className="text-3xl font-bold text-white mb-4">Ready to Access the Full Investor Database?</h2>
             <p className="text-slate-400 mb-8">
               Get complete investor profiles with direct contact details, outreach strategies, talking points,
               and ongoing market intelligence tailored to your development pipeline.
